@@ -1,20 +1,22 @@
+name: Rename Template and Auto-Commit
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  rename:
+  rename-and-commit:
     runs-on: ubuntu-latest
     if: github.event.repository.is_template == false
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Rename Template Repository
-        uses: kota65535/github-template-rename-action@v1.2.0
+      - uses: actions/checkout@v3
+
+      - uses: kota65535/github-template-rename-action@v1
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          dry-run: true
-      - name: Push changes.
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Renamed project files."
-          push_options: --force
+          commit_message: Rename template files and update content
+          commit_options: '--no-verify'
+          file_pattern: '*'
+
