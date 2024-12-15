@@ -7,7 +7,14 @@ jobs:
     if: github.event.repository.is_template == false
     steps:
       - uses: actions/checkout@v2
+      
       - name: Rename Template Repository
-        uses: kota65535/github-template-rename-action@v1.2.0
+      - uses: kota65535/github-template-rename-action@v1.2.0
         with:
-          github-token: ${{ secrets.PAT_TOKEN }}
+          dry-run: true
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Renamed project files."
+          # commit_options: '--amend --no-edit'
+          push_options: --force
