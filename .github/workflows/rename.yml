@@ -1,2 +1,14 @@
-- name: Rename Template Repository
-  uses: kota65535/github-template-rename-action@v1.2.0
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rename Template Repository
+        uses: kota65535/github-template-rename-action@v1.2.0
+        with:
+          to-name: ${{ github.event.repository.name }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
