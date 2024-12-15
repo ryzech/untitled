@@ -21,6 +21,6 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Rename template files and update content
-          commit_options: '--no-verify'
-          file_pattern: '*'
+          commit_options: '--amend --no-edit'  # Amend the last commit without changing the message
+          push_options: '--force'  # Force push the amended commit
 
