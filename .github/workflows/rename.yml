@@ -15,6 +15,9 @@ jobs:
       - uses: kota65535/github-template-rename-action@v1
         continue-on-error: true
 
+      - name: Check git status
+        run: git status
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Rename template files and update content
