@@ -1,10 +1,10 @@
 on:
-  push:
-    branches: [ main ]
+  create
 
 jobs:
   rename:
     runs-on: ubuntu-latest
+    if: github.event.repository.is_template == false
     steps:
       - uses: actions/checkout@v2
       - name: Rename Template Repository
